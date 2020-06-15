@@ -2,15 +2,17 @@
 #include<string>
 #include<assert.h>
 using namespace std;
+#define _CRT_SECURE_NO_WARNINGS 1
+#pragma warning(disable : 4996)
 
 namespace mystr
 {
-	class string
+	class string//字符串类
 	{
 		typedef char* iterator;
 		static size_t npos;
 		friend ostream& operator<<(ostream& out, const string& s);
-	public:
+	public://构造
 		string(const char* str = "")
 		{
 			if (str == nullptr)
@@ -45,7 +47,7 @@ namespace mystr
 				_capacity = _size = 0;
 			}
 		}
-	public:
+	public://迭代器
 		iterator begin()const
 		{
 			return _str;
@@ -54,7 +56,7 @@ namespace mystr
 		{
 			return _str + _size;
 		}
-	public:
+	public://尾插
 		void push_back(char ch)
 		{
 			if (_size >= _capacity)
@@ -64,13 +66,13 @@ namespace mystr
 			_str[_size++] = ch;
 			_str[_size] = '\0';
 		}
-	public:
+	public://重载运算符
 		string& operator+=(char ch)
 		{
 			push_back(ch);
 			return *this;
 		}
-		string& operator+=(char* str)
+		string& operator+=(const char* str)
 		{
 			int len = strlen(str);
 			if (_size + len > _capacity)
@@ -103,7 +105,7 @@ namespace mystr
 		bool operator>(const string& s);
 		bool operator==(const string& s);
 		bool operator!=(const string& s);
-	public:
+	public://查找
 		size_t find(char c, size_t pos = 0)const
 		{
 			for (size_t i = 0; i < _size; ++i)
@@ -169,10 +171,85 @@ namespace mystr
 			}
 			return *this;
 		}
-
+	public://返回值
+		size_t size()const
+		{
+			return _size;
+		}
+		size_t length()const
+		{
+			return _size;
+		}
+		size_t capacity()const
+		{
+			return _capacity;
+		}
+		bool empty()const
+		{
+			return _size == 0;
+		}
+		void clear()
+		{
+			_str[0] = '\0';
+			_size = 0;
+		}
+		const char* c_str()const
+		{
+			return _str;
+		}
+	public://交换
+		void swap(string& s)
+		{
+			std::swap(_str, s._str);
+			std::swap(_capacity, s._capacity);
+			std::swap(_size, s._size);
+		}
+	public://调整大小
+		void resize(size_t n, char c = '\0')
+		{
+			if (n > _size)
+			{
+				if (n > _capacity)
+				{
+					reserve(n * 2);
+				}
+				memset(_str + _size, c, n - _size);
+			}
+			_size = n;
+			_str[n] = '\0';
+		}
+		void reserve(size_t n = 0)
+		{
+			if (n > _capacity)
+			{
+				char* new_str = new char[n + 1];
+				strcpy(new_str, _str);
+				delete[]_str;
+				_str = new_str;
+				_capacity = n;
+			}
+		}
 	private:
 		char* _str;  //字符串空间
 		size_t _capacity; //容量
 		size_t _size; //字符串有效长度  \0
 	};
+	ostream& operator<<(ostream& out, const string& s)
+	{
+		out << s._str;
+		return out;
+	}
+	size_t string::npos = (size_t)(-1);
+}
+
+void main()
+{
+	mystr::string str = "abc";
+	auto it = str.begin();
+	while (it != str.end())
+	{
+		cout << *it;   //iterator it ==> char *it,  *it  ++it
+		++it;
+	}
+	cout << endl;
 }

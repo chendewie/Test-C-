@@ -1,0 +1,4 @@
+﻿  Test.cpp
+C:\My_CODE\Test-C++\STL_string\STL_string\Test.cpp(92,4): warning C4018: “<”: 有符号/无符号不匹配
+C:\My_CODE\Test-C++\STL_string\STL_string\Test.cpp(246,1): warning C4326: “main”的返回类型应为“int”而非“void”
+  STL_string.vcxproj -> C:\My_CODE\Test-C++\STL_string\Debug\STL_string.exe

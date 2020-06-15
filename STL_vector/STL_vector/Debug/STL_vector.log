@@ -1,0 +1,7 @@
+﻿  Test.cpp
+C:\My_CODE\STL_vector\STL_vector\Test.cpp(176,1): warning C4326: “main”的返回类型应为“int”而非“void”
+C:\My_CODE\STL_vector\STL_vector\Test.cpp(140,2): warning C4018: “<”: 有符号/无符号不匹配
+C:\My_CODE\STL_vector\STL_vector\Test.cpp(135): message : 在编译 类 模板 成员函数“void myvec::vector<int>::reserve(size_t)”时
+C:\My_CODE\STL_vector\STL_vector\Test.cpp(74): message : 查看对正在编译的函数 模板 实例化“void myvec::vector<int>::reserve(size_t)”的引用
+C:\My_CODE\STL_vector\STL_vector\Test.cpp(177): message : 查看对正在编译的 类 模板 实例化“myvec::vector<int>”的引用
+  STL_vector.vcxproj -> C:\My_CODE\STL_vector\Debug\STL_vector.exe
